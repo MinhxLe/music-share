@@ -1,6 +1,7 @@
 # development
 ruff==0.4.9
 pyright==1.1.367
+pre-commit==3.7.1
 
 # webstack
 asyncpg==0.29.0

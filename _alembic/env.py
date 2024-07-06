@@ -26,7 +26,9 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 from core.db.models import Base
 from foo.db import models as foo_models
-target_metadata = Base.metadata
+from users.db import models as users_models 
+from spotify.db import models as spotify_models 
+target_metadata = [Base.metadata]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

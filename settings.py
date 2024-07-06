@@ -22,4 +22,4 @@ match ENV:
         raise ValueError(f"not implemented env type {ENV}")
 
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "placeholder")
-SPOTIFY_REDIRECT_URI = "http://localhost"
+SPOTIFY_REDIRECT_URI = "https://placeholder.com/callback"

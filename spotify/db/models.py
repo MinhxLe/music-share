@@ -16,10 +16,10 @@ class SpotifyAccount(Base):
     status: Mapped[Status] = mapped_column(Enum(Status))
 
 
-# class OAuthToken(Base):
-#     user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey(SpotifyAccount))
-#     access_token: Mapped[str]
-#     refresh_token: Mapped[str]
-#     expires_at: Mapped[datetime]
-#     scope: Mapped[list[str]]
-#     active: Mapped[bool]
+class OAuthToken(Base):
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey(SpotifyAccount))
+    access_token: Mapped[str]
+    refresh_token: Mapped[str]
+    expires_at: Mapped[datetime]
+    scope: Mapped[list[str]]
+    active: Mapped[bool]

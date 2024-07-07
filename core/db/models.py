@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Any, Optional
 
 from sqlalchemy import (
+    ARRAY,
     TIMESTAMP,
     MetaData,
     Text,
@@ -37,15 +38,13 @@ def updated_at_column() -> Mapped[datetime]:
     return mapped_column(init=False, server_default=func.now(), onupdate=func.now())
 
 
-metadata = MetaData()
-
-
 class Base(MappedAsDataclass, DeclarativeBase, kw_only=True):  # type: ignore
-    metadata = metadata
+    metadata = MetaData()
     type_annotation_map = {
         datetime: TIMESTAMP(timezone=True),
         str: Text(),
         dict: JSONB,
+        list[str]: ARRAY(Text()),
     }
 
     id: Mapped[uuid.UUID] = primary_id_column()

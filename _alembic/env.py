@@ -26,6 +26,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 from users.db import models as users_models 
 from spotify.db import models as spotify_models 
+print(users_models.User)
 from core.db.models import Base
 target_metadata = Base.metadata
 
@@ -52,10 +53,7 @@ def run_migrations_offline() -> None:
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
-        include_object=include_object,
         dialect_opts={"paramstyle": "named"},
-        include_schemas=True,
-        compare_type=True,
     )
 
 
@@ -77,9 +75,6 @@ def run_migrations_online() -> None:
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
-        include_object=include_object,
-        include_schemas=True,
-        compare_type=True,
     )
 
     with connectable.connect() as connection:

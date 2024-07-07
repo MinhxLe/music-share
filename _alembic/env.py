@@ -24,8 +24,10 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
+from users.db import models as users_models 
+from spotify.db import models as spotify_models 
+print(users_models.User)
 from core.db.models import Base
-from foo.db import models as foo_models
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
@@ -54,8 +56,12 @@ def run_migrations_offline() -> None:
         dialect_opts={"paramstyle": "named"},
     )
 
+
     with context.begin_transaction():
         context.run_migrations()
+
+def include_object(object, name, type_, reflected, compare_to):  # type: ignore
+    return True
 
 
 def run_migrations_online() -> None:

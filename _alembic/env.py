@@ -24,11 +24,10 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from core.db.models import Base
-from foo.db import models as foo_models
 from users.db import models as users_models 
 from spotify.db import models as spotify_models 
-target_metadata = [Base.metadata]
+from core.db.models import Base
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -53,11 +52,18 @@ def run_migrations_offline() -> None:
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
+        include_object=include_object,
         dialect_opts={"paramstyle": "named"},
+        include_schemas=True,
+        compare_type=True,
     )
+
 
     with context.begin_transaction():
         context.run_migrations()
+
+def include_object(object, name, type_, reflected, compare_to):  # type: ignore
+    return True
 
 
 def run_migrations_online() -> None:
@@ -71,6 +77,9 @@ def run_migrations_online() -> None:
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        include_object=include_object,
+        include_schemas=True,
+        compare_type=True,
     )
 
     with connectable.connect() as connection:

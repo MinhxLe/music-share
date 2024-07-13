@@ -23,3 +23,6 @@ match ENV:
 
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "placeholder")
 SPOTIFY_REDIRECT_URI = "https://placeholder.com/callback"
+
+TWILIO_SID = os.getenv("TWILIO_SID", "placeholder")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN", "placeholder")

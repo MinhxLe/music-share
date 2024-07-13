@@ -11,7 +11,10 @@ sqlalchemy==2.0.31
 pydantic==2.8.0
 alembic==1.13.2
 psycopg[binary]==3.1.19
+phonenumbers==8.13.40
+pydantic-extra-types==2.9.0
 
 
 # 3p
 requests-oauth==2.0.0
+
